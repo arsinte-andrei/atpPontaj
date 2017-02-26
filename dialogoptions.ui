@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dialogOptions</class>
+ <widget class="QDialog" name="dialogOptions">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>780</width>
+    <height>532</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="buttonCancel">
+   <property name="geometry">
+    <rect>
+     <x>690</x>
+     <y>500</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buttonApply">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>500</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Apply</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buttonOk">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>500</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ok</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>151</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Filter...</string>
+   </property>
+  </widget>
+  <widget class="QTabWidget" name="tabPanel">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>60</y>
+     <width>591</width>
+     <height>411</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="tabDatabase">
+    <attribute name="title">
+     <string>Database</string>
+    </attribute>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>13</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Database path:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="editDbPath">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>10</y>
+       <width>461</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="placeholderText">
+      <string>Open or create a new Database...</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="buttonDbOpen">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>300</y>
+       <width>80</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Open</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="buttonDbCreate">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>300</y>
+       <width>80</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Create</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="buttonDbBackup">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>300</y>
+       <width>80</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Backup</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblDbStatus">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>190</y>
+       <width>581</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Database status...</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tabAutosave">
+    <attribute name="title">
+     <string>Autosave</string>
+    </attribute>
+    <widget class="QCheckBox" name="checkWindowPos">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Window position</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkWindowSize">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>111</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Window size</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="lblMenuName">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>20</y>
+     <width>181</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Select menu from left</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="listMenu">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>151</width>
+     <height>421</height>
+    </rect>
+   </property>
+   <property name="sortingEnabled">
+    <bool>false</bool>
+   </property>
+   <item>
+    <property name="text">
+     <string>Database</string>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Autosave</string>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>New Item</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>New Item</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>New Item</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>New Item</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>New Item</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>New Item</string>
+    </property>
+   </item>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

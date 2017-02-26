@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mdiJob</class>
+ <widget class="QWidget" name="mdiJob">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>638</width>
+    <height>521</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>All our jobs</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0" colspan="4">
+    <widget class="QLineEdit" name="editFilter"/>
+   </item>
+   <item row="2" column="3">
+    <widget class="QSplitter" name="splitter_5">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Job start:</string>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="editJobStart">
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>To finish job by:</string>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="editJobFinishBy">
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Job finished:</string>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="editJobFinished">
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="4">
+    <widget class="QTableView" name="tableView">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="lblFilter">
+     <property name="text">
+      <string>Filter by:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QSplitter" name="splitter_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Job reference:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="editReference"/>
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>Owner of the job</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="editOwner"/>
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>Site manager:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="editSiteManager"/>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QSplitter" name="splitter_4">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>Job Value:</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="editJobValue">
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="showGroupSeparator" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="prefix">
+       <string>£ </string>
+      </property>
+      <property name="maximum">
+       <double>100000000000000000000.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="text">
+       <string>Job spendings:</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="editJobSpendings">
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="showGroupSeparator" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="prefix">
+       <string>£ </string>
+      </property>
+      <property name="maximum">
+       <double>100000000000000000000.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="editJobClosed">
+      <property name="text">
+       <string>Job finished</string>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="4">
+    <widget class="QSplitter" name="splitter">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <widget class="QPushButton" name="buttonClose">
+      <property name="text">
+       <string>Close</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonCancel">
+      <property name="text">
+       <string>Cancel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonNew">
+      <property name="text">
+       <string>New</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonEdit">
+      <property name="text">
+       <string>Edit</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonDelete">
+      <property name="text">
+       <string>Delete</string>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QSplitter" name="splitter_3">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Postcode:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="editPostcode"/>
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Address:</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="editAddress"/>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
