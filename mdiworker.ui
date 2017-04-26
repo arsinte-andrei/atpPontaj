@@ -6,199 +6,320 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>814</width>
-    <height>570</height>
+    <width>947</width>
+    <height>537</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Worker</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" colspan="3">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Search by:</string>
-     </property>
-    </widget>
+   <item row="1" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>First name:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="editFirstName"/>
+     </item>
+    </layout>
    </item>
-   <item row="1" column="0" colspan="8">
-    <widget class="QLineEdit" name="editSearch"/>
+   <item row="1" column="1">
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <item>
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>NINO</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="editNino"/>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="2" rowspan="2">
+    <layout class="QVBoxLayout" name="verticalLayout_13">
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Address:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="editAddress"/>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="3">
+    <layout class="QVBoxLayout" name="verticalLayout_6">
+     <item>
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>Bank Short Code</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="editBankShortcode"/>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="4">
+    <layout class="QVBoxLayout" name="verticalLayout_7">
+     <item>
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Max h/day</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="editHday"/>
+     </item>
+    </layout>
    </item>
    <item row="2" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>First name:</string>
-     </property>
-    </widget>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Second name</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="editSecondName"/>
+     </item>
+    </layout>
    </item>
    <item row="2" column="1">
-    <widget class="QLabel" name="label_6">
-     <property name="text">
-      <string>Address:</string>
-     </property>
-    </widget>
+    <layout class="QVBoxLayout" name="verticalLayout_8">
+     <item>
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>UTR</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="editUtr"/>
+     </item>
+    </layout>
    </item>
    <item row="2" column="3">
-    <widget class="QLabel" name="label_7">
-     <property name="text">
-      <string>NINO</string>
-     </property>
-    </widget>
+    <layout class="QVBoxLayout" name="verticalLayout_9">
+     <item>
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>Bank Account</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="editBankAccount"/>
+     </item>
+    </layout>
    </item>
-   <item row="2" column="5" colspan="2">
-    <widget class="QLabel" name="label_9">
-     <property name="text">
-      <string>Bank Short Code</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="7">
-    <widget class="QLabel" name="label_11">
-     <property name="text">
-      <string>Max h/day</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLineEdit" name="editFirstName"/>
-   </item>
-   <item row="3" column="1" rowspan="5" colspan="2">
-    <widget class="QTextEdit" name="editAddress"/>
-   </item>
-   <item row="3" column="3" colspan="2">
-    <widget class="QLineEdit" name="editNino"/>
-   </item>
-   <item row="3" column="5" colspan="2">
-    <widget class="QLineEdit" name="editBankShortcode"/>
-   </item>
-   <item row="3" column="7">
-    <widget class="QSpinBox" name="editHday"/>
-   </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="label_4">
-     <property name="text">
-      <string>Second name</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="3">
-    <widget class="QLabel" name="label_8">
-     <property name="text">
-      <string>UTR</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="5" colspan="2">
-    <widget class="QLabel" name="label_10">
-     <property name="text">
-      <string>Bank Account</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLineEdit" name="editSecondName"/>
-   </item>
-   <item row="5" column="3" colspan="2">
-    <widget class="QLineEdit" name="editUtr"/>
-   </item>
-   <item row="5" column="5" colspan="2">
-    <widget class="QLineEdit" name="editBankAccount"/>
-   </item>
-   <item row="5" column="7">
+   <item row="2" column="4">
     <widget class="QCheckBox" name="editSubcontractor">
      <property name="text">
       <string>Subcontractor</string>
      </property>
     </widget>
    </item>
-   <item row="6" column="0">
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>Date of birth</string>
-     </property>
-    </widget>
+   <item row="3" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Date of birth</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDateEdit" name="editDob">
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+       <property name="date">
+        <date>
+         <year>1980</year>
+         <month>1</month>
+         <day>1</day>
+        </date>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
-   <item row="6" column="3">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Card ID</string>
-     </property>
-    </widget>
+   <item row="3" column="1">
+    <layout class="QVBoxLayout" name="verticalLayout_10">
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Card ID</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="editCardId"/>
+     </item>
+    </layout>
    </item>
-   <item row="7" column="0">
-    <widget class="QDateEdit" name="editDob"/>
+   <item row="3" column="2">
+    <layout class="QVBoxLayout" name="verticalLayout_14">
+     <item>
+      <widget class="QLabel" name="label_14">
+       <property name="text">
+        <string>Telephone no:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="editTel"/>
+     </item>
+    </layout>
    </item>
-   <item row="7" column="3" colspan="2">
-    <widget class="QLineEdit" name="editCardId"/>
+   <item row="3" column="3">
+    <layout class="QVBoxLayout" name="verticalLayout_11">
+     <item>
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>Current wage/h</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="editWage">
+       <property name="buttonSymbols">
+        <enum>QAbstractSpinBox::PlusMinus</enum>
+       </property>
+       <property name="prefix">
+        <string>£ </string>
+       </property>
+       <property name="maximum">
+        <double>1000000000000000042420637374017961984.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
-   <item row="8" column="0" colspan="8">
+   <item row="3" column="4">
+    <layout class="QVBoxLayout" name="verticalLayout_12">
+     <item>
+      <widget class="QLabel" name="label_13">
+       <property name="text">
+        <string>Date wage efective</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDateEdit" name="editFromDate">
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+       <property name="date">
+        <date>
+         <year>2017</year>
+         <month>1</month>
+         <day>1</day>
+        </date>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="5" column="2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="buttonClose">
+       <property name="text">
+        <string>Close</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonCancel">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonNew">
+       <property name="text">
+        <string>New</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonEdit">
+       <property name="text">
+        <string>Edit</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonDelete">
+       <property name="text">
+        <string>Delete</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0" colspan="5">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Search by:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="editSearch"/>
+     </item>
+    </layout>
+   </item>
+   <item row="4" column="0" colspan="5">
     <widget class="QTableView" name="tableView">
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
      </property>
     </widget>
    </item>
-   <item row="9" column="0">
-    <widget class="QPushButton" name="buttonClose">
-     <property name="text">
-      <string>Close</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="1">
-    <widget class="QPushButton" name="buttonCancel">
-     <property name="text">
-      <string>Cancel</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="2">
-    <widget class="QPushButton" name="buttonNew">
-     <property name="text">
-      <string>New</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="4" colspan="2">
-    <widget class="QPushButton" name="buttonEdit">
-     <property name="text">
-      <string>Edit</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="6" colspan="2">
-    <widget class="QPushButton" name="buttonDelete">
-     <property name="text">
-      <string>Delete</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="5">
-    <widget class="QLineEdit" name="editWages"/>
-   </item>
-   <item row="7" column="7">
-    <widget class="QDateEdit" name="editFromDate">
-     <property name="calendarPopup">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="5">
-    <widget class="QLabel" name="label_12">
-     <property name="text">
-      <string>Current wage/h</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="7">
-    <widget class="QLabel" name="label_13">
-     <property name="text">
-      <string>Date wage efective</string>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>editSearch</tabstop>
+  <tabstop>editFirstName</tabstop>
+  <tabstop>editSecondName</tabstop>
+  <tabstop>editDob</tabstop>
+  <tabstop>editNino</tabstop>
+  <tabstop>editUtr</tabstop>
+  <tabstop>editCardId</tabstop>
+  <tabstop>editAddress</tabstop>
+  <tabstop>editTel</tabstop>
+  <tabstop>editBankShortcode</tabstop>
+  <tabstop>editBankAccount</tabstop>
+  <tabstop>editHday</tabstop>
+  <tabstop>editSubcontractor</tabstop>
+  <tabstop>editWage</tabstop>
+  <tabstop>editFromDate</tabstop>
+  <tabstop>buttonClose</tabstop>
+  <tabstop>buttonCancel</tabstop>
+  <tabstop>buttonNew</tabstop>
+  <tabstop>buttonEdit</tabstop>
+  <tabstop>buttonDelete</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

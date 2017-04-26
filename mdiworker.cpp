@@ -2,6 +2,7 @@
 #include "ui_mdiworker.h"
 #include <QMessageBox>
 #include <QDebug>
+#include <QMessageBox>
 
 mdiWorker::mdiWorker(atpDb *tataDb, QWidget *parent) : QWidget(parent), ui(new Ui::mdiWorker) {
     ui->setupUi(this);
@@ -12,6 +13,7 @@ mdiWorker::mdiWorker(atpDb *tataDb, QWidget *parent) : QWidget(parent), ui(new U
     data = new QMap<QString, QVariant>;
     data->clear();
 
+    setModel();
     on_buttonCancel_clicked();
 }
 
@@ -40,26 +42,21 @@ void mdiWorker::on_buttonNew_clicked() {
         enableAll();
         clearAllFields();
     } else {
-        data->clear();
-        data->insert(":u_cardid", ui->editCardId->text());
-        data->insert(":u_name", ui->editFirstName->text());
-        data->insert(":u_secondname", ui->editSecondName->text());
-        data->insert(":u_dob", ui->editDob->text());
-        data->insert(":u_address", ui->editAddress->document()->toPlainText());
-        data->insert(":u_nino", ui->editNino->text());
-        data->insert(":u_utr", ui->editUtr->text());
-        data->insert(":u_bankshortcode", ui->editBankShortcode->text());
-        data->insert(":u_bankacount", ui->editBankAccount->text());
-        data->insert(":u_maxhdaily", ui->editHday->value());
-        if(ui->editSubcontractor->isChecked()){
-            data->insert(":u_subcontractor", "YES");
+        if(allCompleated()){
+            insertNewRecord();
+            on_buttonCancel_clicked();
         } else {
-            data->insert(":u_subcontractor", "NO");
+            QMessageBox msgBox;
+            msgBox.setText(errorReturned);
+            msgBox.setInformativeText("Do you want to continue?");
+            msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            msgBox.setDefaultButton(QMessageBox::No);
+            int ret = msgBox.exec();
+            if(ret == QMessageBox::Yes){
+                insertNewRecord();
+                on_buttonCancel_clicked();
+            }
         }
-
-        myDb->atpInsert("mainConnection", "tbl_users", data);
-
-        on_buttonCancel_clicked();
     }
 }
 
@@ -72,28 +69,23 @@ void mdiWorker::on_buttonEdit_clicked() {
         ui->buttonNew->setEnabled(false);
         enableAll();
     } else {
-        data->clear();
-        data->insert(":u_id", userId);
-        data->insert(":u_cardid", ui->editCardId->text());
-        data->insert(":u_name", ui->editFirstName->text());
-        data->insert(":u_secondname", ui->editSecondName->text());
-        data->insert(":u_dob", ui->editDob->text());
-        data->insert(":u_address", ui->editAddress->document()->toPlainText());
-        data->insert(":u_nino", ui->editNino->text());
-        data->insert(":u_utr", ui->editUtr->text());
-        data->insert(":u_bankshortcode", ui->editBankShortcode->text());
-        data->insert(":u_bankacount", ui->editBankAccount->text());
-        data->insert(":u_maxhdaily", ui->editHday->value());
-        if(ui->editSubcontractor->isChecked()){
-            data->insert(":u_subcontractor", "YES");
+        if(allCompleated()){
+            updateOldRecord();
+            on_buttonCancel_clicked();
         } else {
-            data->insert(":u_subcontractor", "NO");
+            QMessageBox msgBox;
+            msgBox.setText(errorReturned);
+            msgBox.setInformativeText("Do you want to continue?");
+            msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            msgBox.setDefaultButton(QMessageBox::No);
+            int ret = msgBox.exec();
+            if(ret == QMessageBox::Yes){
+                updateOldRecord();
+                on_buttonCancel_clicked();
+            }
         }
-
-        myDb->atpUpdate("mainConnection", "tbl_users", data, "u_id = :u_id");
-
-        on_buttonCancel_clicked();
     }
+
 }
 
 void mdiWorker::on_buttonDelete_clicked() {
@@ -130,39 +122,47 @@ void mdiWorker::on_tableView_clicked(const QModelIndex &index) {
     int rand = index.row();
 
     QString u_id            = ui->tableView->model()->data(ui->tableView->model()->index(rand,0)).toString();
-    QString u_cardid        = ui->tableView->model()->data(ui->tableView->model()->index(rand,1)).toString();
-    QString u_name          = ui->tableView->model()->data(ui->tableView->model()->index(rand,2)).toString();
-    QString u_secondname    = ui->tableView->model()->data(ui->tableView->model()->index(rand,3)).toString();
-    QString u_dob           = ui->tableView->model()->data(ui->tableView->model()->index(rand,4)).toString();
-    QString u_address       = ui->tableView->model()->data(ui->tableView->model()->index(rand,5)).toString();
-    QString u_nino          = ui->tableView->model()->data(ui->tableView->model()->index(rand,6)).toString();
-    QString u_utr           = ui->tableView->model()->data(ui->tableView->model()->index(rand,7)).toString();
-    QString u_bankshortcode = ui->tableView->model()->data(ui->tableView->model()->index(rand,8)).toString();
-    QString u_bankacount    = ui->tableView->model()->data(ui->tableView->model()->index(rand,9)).toString();
-    QString u_maxhdaily     = ui->tableView->model()->data(ui->tableView->model()->index(rand,10)).toString();
-    QString u_subcontractor = ui->tableView->model()->data(ui->tableView->model()->index(rand,11)).toString();
-
-    ui->editFirstName->setText(u_name);
-    ui->editSecondName->setText(u_secondname);
-    ui->editAddress->setText(u_address);
-    ui->editNino->setText(u_nino);
-    ui->editUtr->setText(u_utr);
-    ui->editBankShortcode->setText(u_bankshortcode);
-    ui->editBankAccount->setText(u_bankacount);
-    ui->editCardId->setText(u_cardid);
-    ui->editHday->setValue(u_maxhdaily.toDouble());
-    QDate dateOfBirth;
-    ui->editDob->setDate(dateOfBirth.fromString(u_dob, "dd/MM/yyyy"));
-    if (u_subcontractor == "YES"){
-        ui->editSubcontractor->setChecked(true);
-    } else {
-        ui->editSubcontractor->setChecked(false);
-    }
-//TODO the calculations
-//    ui->editJobSpendings->setText(job_startdate);
-
     userId = u_id.toInt();
+
     if (userId > 0) {
+        QString u_cardid        = ui->tableView->model()->data(ui->tableView->model()->index(rand,1)).toString();
+        QString u_name          = ui->tableView->model()->data(ui->tableView->model()->index(rand,2)).toString();
+        QString u_secondname    = ui->tableView->model()->data(ui->tableView->model()->index(rand,3)).toString();
+        QString u_dob           = ui->tableView->model()->data(ui->tableView->model()->index(rand,4)).toString();
+        QString u_address       = ui->tableView->model()->data(ui->tableView->model()->index(rand,5)).toString();
+        QString u_tel           = ui->tableView->model()->data(ui->tableView->model()->index(rand,6)).toString();
+        QString u_nino          = ui->tableView->model()->data(ui->tableView->model()->index(rand,7)).toString();
+        QString u_utr           = ui->tableView->model()->data(ui->tableView->model()->index(rand,8)).toString();
+        QString u_bankshortcode = ui->tableView->model()->data(ui->tableView->model()->index(rand,9)).toString();
+        QString u_bankacount    = ui->tableView->model()->data(ui->tableView->model()->index(rand,10)).toString();
+        QString u_maxhdaily     = ui->tableView->model()->data(ui->tableView->model()->index(rand,11)).toString();
+        QString u_subcontractor = ui->tableView->model()->data(ui->tableView->model()->index(rand,12)).toString();
+
+        ui->editFirstName->setText(u_name);
+        ui->editSecondName->setText(u_secondname);
+        ui->editNino->setText(u_nino);
+        ui->editUtr->setText(u_utr);
+        ui->editCardId->setText(u_cardid);
+        ui->editAddress->setText(u_address);
+        ui->editTel->setText(u_tel);
+        ui->editBankShortcode->setText(u_bankshortcode);
+        ui->editBankAccount->setText(u_bankacount);
+        ui->editHday->setValue(u_maxhdaily.toDouble());
+
+        QDate dateOfBirth;
+        ui->editDob->setDate(dateOfBirth.fromString(u_dob, "yyyy-MM-dd"));
+
+        if (u_subcontractor == "YES"){
+            ui->editSubcontractor->setChecked(true);
+        } else {
+            ui->editSubcontractor->setChecked(false);
+        }
+
+        getTheWages(u_id);
+
+    //TODO the calculations
+    //    ui->editJobSpendings->setText(job_startdate);
+
         ui->buttonEdit->setEnabled(true);
         ui->buttonDelete->setEnabled(true);
     } else {
@@ -171,7 +171,7 @@ void mdiWorker::on_tableView_clicked(const QModelIndex &index) {
     }
 }
 
-void mdiWorker::updateModel(){
+void mdiWorker::setModel() {
     model->setTable("tbl_users");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->setHeaderData(0, Qt::Horizontal,"Id");
@@ -209,6 +209,10 @@ void mdiWorker::updateModel(){
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->setAlternatingRowColors(true);
+}
+
+void mdiWorker::updateModel(){
+
     if (model->select()){
         qDebug() <<"merge";
     }
@@ -218,6 +222,7 @@ void mdiWorker::diesableAll(){
     ui->editFirstName->setEnabled(false);
     ui->editSecondName->setEnabled(false);
     ui->editAddress->setEnabled(false);
+    ui->editTel->setEnabled(false);
     ui->editNino->setEnabled(false);
     ui->editUtr->setEnabled(false);
     ui->editBankShortcode->setEnabled(false);
@@ -227,12 +232,16 @@ void mdiWorker::diesableAll(){
     ui->editHday->setEnabled(false);
     ui->editSubcontractor->setEnabled(false);
     ui->tableView->setEnabled(true);
+    ui->editWage->setEnabled(false);
+    ui->editFromDate->setEnabled(false);
+    ui->editSearch->setEnabled(true);
 }
 
 void mdiWorker::enableAll(){
     ui->editFirstName->setEnabled(true);
     ui->editSecondName->setEnabled(true);
     ui->editAddress->setEnabled(true);
+    ui->editTel->setEnabled(true);
     ui->editNino->setEnabled(true);
     ui->editUtr->setEnabled(true);
     ui->editBankShortcode->setEnabled(true);
@@ -242,21 +251,28 @@ void mdiWorker::enableAll(){
     ui->editHday->setEnabled(true);
     ui->editSubcontractor->setEnabled(true);
     ui->tableView->setEnabled(false);
+    ui->editWage->setEnabled(true);
+    ui->editFromDate->setEnabled(true);
+    ui->editSearch->setEnabled(false);
 }
 
 void mdiWorker::clearAllFields(){
     ui->editFirstName->clear();
     ui->editSecondName->clear();
     ui->editAddress->clear();
+    ui->editTel->clear();
     ui->editNino->clear();
     ui->editUtr->clear();
     ui->editBankShortcode->clear();
     ui->editBankAccount->clear();
-    ui->editDob->clear();
+    ui->editDob->setDate(QDate::fromString("04/11/1984", "dd/MM/yyyy"));
     ui->editCardId->clear();
     ui->editHday->clear();
     ui->editSubcontractor->setChecked(false);
+    ui->editWage->clear();
+    ui->editFromDate->setDate(QDate::currentDate());
     userId = 0;
+    wageChanged = false;
 }
 
 void mdiWorker::initButtons(){
@@ -266,4 +282,141 @@ void mdiWorker::initButtons(){
 
     ui->buttonNew->setText("New");
     ui->buttonEdit->setText("Edit");
+}
+
+/*check if all data has been completed if any mistake spoted return false*/
+bool mdiWorker::allCompleated() {
+    bool myRet = true;
+    errorReturned.clear();
+
+    if(ui->editAddress->document()->isEmpty()) {
+        myRet = false;
+        errorReturned.append("No address! ");
+    }
+    if(ui->editBankAccount->text().isEmpty()) {
+        myRet = false;
+        errorReturned.append("No bank account! ");
+    }
+    if(ui->editBankShortcode->text().isEmpty()) {
+        myRet = false;
+        errorReturned.append("No branch short code! ");
+    }
+    if(ui->editCardId->text().isEmpty()) {
+        myRet = false;
+        errorReturned.append("No card ID! ");
+    }
+    if(ui->editDob->text().isEmpty()) {
+        myRet = false;
+        errorReturned.append("No date of birth! ");
+    }
+    if(ui->editFirstName->text().isEmpty()) {
+        myRet = false;
+        errorReturned.append("No first name! ");
+    }
+    if(ui->editFromDate->text().isEmpty()) {
+        myRet = false;
+        errorReturned.append("No date for the wage to start from! ");
+    }
+    if(ui->editHday->text().isEmpty()) {
+        myRet = false;
+        errorReturned.append("No max time @day! ");
+    }
+    if(ui->editNino->text().isEmpty()) {
+        myRet = false;
+        errorReturned.append("No NINO! ");
+    }
+    if(ui->editSecondName->text().isEmpty()) {
+        myRet = false;
+        errorReturned.append("No family name! ");
+    }
+    if(ui->editTel->text().isEmpty()) {
+        myRet = false;
+        errorReturned.append("No telephone! ");
+    }
+    if(ui->editUtr->text().isEmpty()) {
+        myRet = false;
+        errorReturned.append("No UTR! ");
+    }
+    if(ui->editWage->text().isEmpty()) {
+        myRet = false;
+        errorReturned.append("No wage seted! ");
+    }
+
+    return myRet;
+}
+
+void mdiWorker::insertNewRecord() {
+    /*Insert new record in tbl_users*/
+    data->clear();
+    data->insert(":u_cardid", ui->editCardId->text());
+    data->insert(":u_name", ui->editFirstName->text());
+    data->insert(":u_secondname", ui->editSecondName->text());
+    data->insert(":u_dob", ui->editDob->date().toString("yyyy-MM-dd"));
+    data->insert(":u_address", ui->editAddress->document()->toPlainText());
+    data->insert(":u_tel", ui->editTel->text());
+    data->insert(":u_nino", ui->editNino->text());
+    data->insert(":u_utr", ui->editUtr->text());
+    data->insert(":u_bankshortcode", ui->editBankShortcode->text());
+    data->insert(":u_bankacount", ui->editBankAccount->text());
+    data->insert(":u_maxhdaily", ui->editHday->value());
+    if(ui->editSubcontractor->isChecked()){
+        data->insert(":u_subcontractor", "YES");
+    } else {
+        data->insert(":u_subcontractor", "NO");
+    }
+    myDb->atpInsert("mainConnection", "tbl_users", data);
+
+    /*Search tbl_users to see last inserted ID*/
+    QSqlQuery myQ = myDb->atpSelect("mainConnection", "SELECT u_id FROM tbl_users WHERE u_name = '" + ui->editFirstName->text() + "' AND u_secondname = '" + ui->editSecondName->text() + "' AND u_dob = '" + ui->editDob->text() +"'");
+    myQ.first();
+
+    /*Insert new record in tbl_userrate based on last interted ID*/
+    data->clear();
+    data->insert("ur_u_id", myQ.value("u_id").toString());
+    data->insert("ur_amount", ui->editWage->value());
+    data->insert("ur_dateefect", ui->editFromDate->date().toString("yyyy-MM-dd"));
+    myDb->atpInsert("mainConnection", "tbl_userrate", data);
+}
+
+void mdiWorker::updateOldRecord() {
+    data->clear();
+    data->insert(":u_id", userId);
+    data->insert(":u_cardid", ui->editCardId->text());
+    data->insert(":u_name", ui->editFirstName->text());
+    data->insert(":u_secondname", ui->editSecondName->text());
+    data->insert(":u_dob", ui->editDob->text());
+    data->insert(":u_address", ui->editAddress->document()->toPlainText());
+    data->insert(":u_tel", ui->editTel->text());
+    data->insert(":u_nino", ui->editNino->text());
+    data->insert(":u_utr", ui->editUtr->text());
+    data->insert(":u_bankshortcode", ui->editBankShortcode->text());
+    data->insert(":u_bankacount", ui->editBankAccount->text());
+    data->insert(":u_maxhdaily", ui->editHday->value());
+    if(ui->editSubcontractor->isChecked()){
+        data->insert(":u_subcontractor", "YES");
+    } else {
+        data->insert(":u_subcontractor", "NO");
+    }
+
+    myDb->atpUpdate("mainConnection", "tbl_users", data, "u_id = :u_id");
+
+    if (wageChanged) {
+        data->clear();
+        data->insert("ur_u_id", userId);
+        data->insert("ur_amount", ui->editWage->value());
+        data->insert("ur_dateefect", ui->editFromDate->date());
+        myDb->atpInsert("mainConnection", "tbl_userrate", data);
+    }
+}
+
+void mdiWorker::getTheWages(QString personId) {
+    QSqlQuery myQ = myDb->atpSelect("mainConnection", "SELECT * FROM tbl_userrate WHERE ur_u_id = '" + personId + "' ORDER BY date(ur_dateeffect) DESC LIMIT 1");
+    myQ.first();
+    ui->editWage->setValue(myQ.value("ur_amount").toDouble());
+    ui->editFromDate->setDate(myQ.value("ur_dateeffect").toDate());
+}
+
+void mdiWorker::on_editWage_valueChanged(double arg1) {
+    Q_UNUSED(arg1);
+    wageChanged = true;
 }

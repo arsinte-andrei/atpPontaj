@@ -7,8 +7,7 @@ namespace Ui {
 class mdiUserRates;
 }
 
-class mdiUserRates : public QWidget
-{
+class mdiUserRates : public QWidget {
     Q_OBJECT
 
 public:

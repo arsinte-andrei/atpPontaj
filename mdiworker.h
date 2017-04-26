@@ -29,11 +29,18 @@ private slots:
     void on_editSearch_textChanged(const QString &arg1);
     void on_tableView_clicked(const QModelIndex &index);
 
+    void setModel();
     void updateModel();
     void diesableAll();
     void enableAll();
     void clearAllFields();
     void initButtons();
+    bool allCompleated();
+    void insertNewRecord();
+    void updateOldRecord();
+    void getTheWages(QString personId);
+
+    void on_editWage_valueChanged(double arg1);
 
 private:
     Ui::mdiWorker *ui;
@@ -42,6 +49,8 @@ private:
     QSortFilterProxyModel *proxyModel;
     QMap<QString, QVariant> *data;
     int userId;
+    bool wageChanged;
+    QString errorReturned;
 };
 
 #endif // MDIWORKER_H
